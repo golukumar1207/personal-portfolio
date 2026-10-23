@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Personal portfolio of Golu Kumar, a B.Tech Computer Science student at JECRC University, Jaipur."
+    />
+    <title>Golu Kumar | Personal Portfolio</title>
+    <!-- Stylesheet for layout, colors, and responsive design -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Skip link helps keyboard users jump past the header -->
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Site header with logo, navigation, and theme toggle -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#home">Golu Kumar</a>
+
+        <!-- Hamburger button is shown on small screens -->
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Light/dark mode button. JavaScript saves the choice in localStorage. -->
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Switch to light mode"
+        >
+          <span class="theme-toggle-icon" aria-hidden="true">☀</span>
+          <span class="theme-toggle-text">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HOME -->
+      <section id="home" class="section hero">
+        <div class="container hero-inner">
+          <p class="eyebrow">B.Tech CSE · JECRC University, Jaipur</p>
+          <h1>Hi, I am Golu Kumar</h1>
+          <p class="hero-lead">
+            I am a second-year Computer Science and Engineering student and an
+            aspiring web developer. I am learning how to build clear, usable
+            websites with HTML, CSS, and JavaScript.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact me</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About Me</h2>
+          <p class="section-intro">
+            A short overview of my studies and what I am working toward.
+          </p>
+          <div class="about-grid">
+            <article class="card">
+              <h3>Education</h3>
+              <ul class="info-list">
+                <li>
+                  <strong>Course:</strong> B.Tech in Computer Science and
+                  Engineering
+                </li>
+                <li>
+                  <strong>University:</strong> JECRC University, Jaipur
+                </li>
+                <li><strong>Year:</strong> Second year</li>
+                <li><strong>Expected graduation:</strong> 2029</li>
+                <li><strong>CGPA:</strong> 8.0</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Background</h3>
+              <p>
+                I am building this personal portfolio as a college assessment
+                project. My current focus is learning web development and
+                practicing programming with languages I have studied in class
+                and on my own.
+              </p>
+              <p>
+                This site is a first working version. Later I plan to add an
+                API-based chatbot with a secure backend. This page does not
+                include a fake chatbot or any secret keys.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section section-alt">
+        <div class="container">
+          <h2>Skills</h2>
+          <p class="section-intro">
+            Technologies I am learning or have studied. These are not claimed as
+            expert-level skills.
+          </p>
+          <ul class="skills-list">
+            <li class="skill-chip">HTML</li>
+            <li class="skill-chip">CSS</li>
+            <li class="skill-chip">JavaScript</li>
+            <li class="skill-chip">C++</li>
+            <li class="skill-chip">C</li>
+            <li class="skill-chip">Python</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="container">
+          <h2>Projects</h2>
+          <p class="section-intro">
+            Course and practice work. Repository and live links are marked as
+            placeholders until I add the real URLs.
+          </p>
+
+          <!-- Search filters cards as you type -->
+          <div class="search-bar">
+            <label for="project-search">Search projects</label>
+            <input
+              id="project-search"
+              type="search"
+              placeholder="Try Python, Quiz, or Book"
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- Message shown by JavaScript when nothing matches -->
+          <p id="no-results" class="no-results" hidden>
+            No projects match your search. Try another keyword.
+          </p>
+
+          <div id="project-grid" class="project-grid">
+            <article
+              class="project-card"
+              data-title="Python Programs Collection"
+              data-description="A small collection of Python programs covering factorial, Fibonacci, and converting a structure to a dictionary."
+              data-tech="Python"
+            >
+              <p class="project-tag">Python</p>
+              <h3>Python Programs Collection</h3>
+              <p>
+                A small collection of Python programs covering factorial,
+                Fibonacci, and converting a structure to a dictionary.
+              </p>
+              <p class="project-meta">Technologies: Python</p>
+              <p class="placeholder-note">
+                Repository URL: not added yet — replace this later
+              </p>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="Messy Python Code Improvement"
+              data-description="Improving messy Python code using AI assistance to make the program easier to read and maintain."
+              data-tech="Python AI"
+            >
+              <p class="project-tag">Python · AI assistance</p>
+              <h3>Messy Python Code Improvement</h3>
+              <p>
+                Improving messy Python code using AI assistance to make the
+                program easier to read and maintain.
+              </p>
+              <p class="project-meta">Technologies: Python</p>
+              <p class="placeholder-note">
+                Repository URL: not added yet — replace this later
+              </p>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="Bug Fixing Using Cursor AI"
+              data-description="Debugging and correcting an incorrect program with help from Cursor AI."
+              data-tech="Python debugging Cursor AI"
+            >
+              <p class="project-tag">Debugging · Cursor AI</p>
+              <h3>Bug Fixing Using Cursor AI</h3>
+              <p>
+                Debugging and correcting an incorrect program with help from
+                Cursor AI.
+              </p>
+              <p class="project-meta">Technologies: Python, debugging</p>
+              <p class="placeholder-note">
+                Repository URL: not added yet — replace this later
+              </p>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="Interactive Quiz Application"
+              data-description="An interactive quiz application developed in Lecture 10."
+              data-tech="HTML CSS JavaScript Quiz"
+            >
+              <p class="project-tag">Web · Lecture 10</p>
+              <h3>Interactive Quiz Application</h3>
+              <p>
+                An interactive quiz application developed in Lecture 10 to
+                practice questions and answers in the browser.
+              </p>
+              <p class="project-meta">Technologies: HTML, CSS, JavaScript</p>
+              <p class="placeholder-note">
+                Live demo URL: not added yet — replace this later
+              </p>
+            </article>
+
+            <article
+              class="project-card"
+              data-title="Book Reading List Application"
+              data-description="A book reading list application developed in Lecture 11."
+              data-tech="HTML CSS JavaScript Book"
+            >
+              <p class="project-tag">Web · Lecture 11</p>
+              <h3>Book Reading List Application</h3>
+              <p>
+                A book reading list application developed in Lecture 11 for
+                tracking titles I want to read or have already read.
+              </p>
+              <p class="project-meta">Technologies: HTML, CSS, JavaScript</p>
+              <p class="placeholder-note">
+                Live demo URL: not added yet — replace this later
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section section-alt">
+        <div class="container">
+          <h2>Contact</h2>
+          <p class="section-intro">
+            The best way to reach me is email. You can also view my GitHub
+            profile once I add my username.
+          </p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:golugulshan136@gmail.com">
+              Email me
+            </a>
+            <!-- Replace YOUR-GITHUB-USERNAME with your real GitHub username -->
+            <a
+              class="btn btn-secondary"
+              href="https://github.com/YOUR-GITHUB-USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub profile (update username)
+            </a>
+          </div>
+          <p class="contact-email">
+            Email:
+            <a href="mailto:golugulshan136@gmail.com">golugulshan136@gmail.com</a>
+          </p>
+          <p class="placeholder-note">
+            GitHub link uses a placeholder username. Replace
+            <code>YOUR-GITHUB-USERNAME</code> in index.html when you have it.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Golu Kumar. Personal portfolio for college assessment.</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for theme, mobile menu, and project search -->
+    <script src="script.js"></script>
+  </body>
+</html>
