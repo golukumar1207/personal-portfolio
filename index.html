@@ -39,6 +39,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#chat">Chat</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -107,9 +108,8 @@
                 and on my own.
               </p>
               <p>
-                This site is a first working version. Later I plan to add an
-                API-based chatbot with a secure backend. This page does not
-                include a fake chatbot or any secret keys.
+                This site includes an API-based chatbot with a secure backend.
+                This page does not include any secret keys.
               </p>
             </article>
           </div>
@@ -254,8 +254,60 @@
         </div>
       </section>
 
+      <!-- CHATBOT — talks to /api/chat on the server -->
+      <section id="chat" class="section section-alt">
+        <div class="container">
+          <h2>Ask the Portfolio Chatbot</h2>
+          <p class="section-intro">
+            Ask about my studies, skills, or projects. Answers come from the
+            secure backend, not from a key in this page.
+          </p>
+
+          <div class="chat-panel">
+            <div
+              id="chat-log"
+              class="chat-log"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+            >
+              <div class="chat-message chat-message-bot">
+                <span class="chat-role">Assistant</span>
+                <p class="chat-bubble">
+                  Hi, I am Golu Kumar’s portfolio assistant. Ask me about
+                  education, skills, or the five projects on this site.
+                </p>
+              </div>
+            </div>
+
+            <p id="chat-status" class="chat-status" hidden>Thinking…</p>
+
+            <form id="chat-form" class="chat-form">
+              <label for="chat-input">Your question</label>
+              <div class="chat-compose">
+                <input
+                  id="chat-input"
+                  type="text"
+                  maxlength="500"
+                  autocomplete="off"
+                  placeholder="Example: What is Golu studying?"
+                />
+                <button
+                  id="chat-send"
+                  class="btn btn-primary"
+                  type="submit"
+                  disabled
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <!-- CONTACT -->
-      <section id="contact" class="section section-alt">
+      <section id="contact" class="section">
         <div class="container">
           <h2>Contact</h2>
           <p class="section-intro">
@@ -293,7 +345,7 @@
       </div>
     </footer>
 
-    <!-- JavaScript for theme, mobile menu, and project search -->
+    <!-- JavaScript for theme, mobile menu, project search, and chatbot -->
     <script src="script.js"></script>
   </body>
 </html>

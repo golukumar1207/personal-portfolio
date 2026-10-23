@@ -1,9 +1,10 @@
 /* =========================================================
    Personal Portfolio — JavaScript
-   This file handles three things:
+   This file handles:
    1. Light / dark theme (saved in localStorage)
    2. Mobile navigation menu
    3. Instant project search
+   4. Portfolio chatbot (POST /api/chat)
    ========================================================= */
 
 (function () {
@@ -107,4 +108,118 @@
 
   // "input" runs as soon as the user types, so results update immediately.
   searchInput.addEventListener("input", filterProjects);
+
+  /* ---------- Portfolio chatbot ---------- */
+
+  const chatForm = document.getElementById("chat-form");
+  const chatInput = document.getElementById("chat-input");
+  const chatSend = document.getElementById("chat-send");
+  const chatLog = document.getElementById("chat-log");
+  const chatStatus = document.getElementById("chat-status");
+  const CHAT_MAX_LENGTH = 500;
+  let chatBusy = false;
+
+  function appendChatMessage(kind, text) {
+    const row = document.createElement("div");
+    row.className = "chat-message chat-message-" + kind;
+
+    const role = document.createElement("span");
+    role.className = "chat-role";
+    role.textContent =
+      kind === "user" ? "You" : kind === "error" ? "Notice" : "Assistant";
+
+    const bubble = document.createElement("p");
+    bubble.className = "chat-bubble";
+    bubble.textContent = text;
+
+    row.appendChild(role);
+    row.appendChild(bubble);
+    chatLog.appendChild(row);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function setChatBusy(isBusy) {
+    chatBusy = isBusy;
+    chatInput.disabled = isBusy;
+    chatStatus.hidden = !isBusy;
+    chatLog.setAttribute("aria-busy", String(isBusy));
+    updateChatSendState();
+  }
+
+  function updateChatSendState() {
+    const hasText = chatInput.value.trim().length > 0;
+    chatSend.disabled = chatBusy || !hasText;
+  }
+
+  function friendlyChatError(data, response) {
+    if (data && typeof data.error === "string" && data.error.trim()) {
+      return data.error;
+    }
+    if (response && response.status === 404) {
+      return "The chatbot backend was not found. Open this site through Vercel so /api/chat can run.";
+    }
+    return "Sorry, I could not get a reply. Please try again in a moment.";
+  }
+
+  async function sendChatQuestion(question) {
+    setChatBusy(true);
+    appendChatMessage("user", question);
+
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: question })
+      });
+
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (parseErr) {
+        data = null;
+      }
+
+      if (!response.ok || !data || typeof data.answer !== "string") {
+        appendChatMessage("error", friendlyChatError(data, response));
+        return;
+      }
+
+      appendChatMessage("bot", data.answer);
+    } catch (err) {
+      appendChatMessage(
+        "error",
+        "I could not reach the chatbot. If you opened the HTML file directly, run the site with Vercel so /api/chat works."
+      );
+    } finally {
+      setChatBusy(false);
+      chatInput.focus();
+    }
+  }
+
+  if (chatForm && chatInput && chatSend && chatLog && chatStatus) {
+    chatInput.addEventListener("input", updateChatSendState);
+
+    chatForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (chatBusy) {
+        return;
+      }
+
+      const question = chatInput.value.trim();
+      if (question.length === 0) {
+        return;
+      }
+      if (question.length > CHAT_MAX_LENGTH) {
+        appendChatMessage(
+          "error",
+          "Please keep your question to 500 characters or fewer."
+        );
+        return;
+      }
+
+      chatInput.value = "";
+      updateChatSendState();
+      sendChatQuestion(question);
+    });
+  }
 })();
