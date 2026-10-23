@@ -5,7 +5,9 @@
  */
 
 const MAX_QUESTION_LENGTH = 500;
-const GEMINI_MODEL = "gemini-2.5-flash";
+// Current generateContent Flash model from Google Gemini API docs.
+// gemini-2.5-flash returns 404 for new API keys / projects.
+const GEMINI_MODEL = "gemini-3.8-flash";
 const GEMINI_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/" +
   GEMINI_MODEL +
@@ -88,6 +90,46 @@ function parseQuestion(req) {
   return { question };
 }
 
+function redactSecrets(text, apiKey) {
+  if (!text) {
+    return "";
+  }
+  let safe = String(text);
+  if (apiKey) {
+    safe = safe.split(apiKey).join("[redacted]");
+  }
+  return safe.slice(0, 500);
+}
+
+function summarizeGeminiError(status, bodyText, apiKey) {
+  const safeBody = redactSecrets(bodyText, apiKey);
+  let details = "status=" + status + " model=" + GEMINI_MODEL;
+
+  try {
+    const parsed = JSON.parse(bodyText);
+    const err = parsed && parsed.error;
+    if (err && typeof err === "object") {
+      if (err.status) {
+        details += " geminiStatus=" + err.status;
+      }
+      if (err.code) {
+        details += " code=" + err.code;
+      }
+      if (typeof err.message === "string" && err.message) {
+        details += " message=" + redactSecrets(err.message, apiKey);
+        return details;
+      }
+    }
+  } catch (parseErr) {
+    // Body was not JSON; log a short redacted snippet instead.
+  }
+
+  if (safeBody) {
+    details += " body=" + safeBody;
+  }
+  return details;
+}
+
 function extractAnswer(geminiData) {
   const parts = geminiData &&
     geminiData.candidates &&
@@ -148,7 +190,11 @@ module.exports = async function handler(req, res) {
     });
 
     if (!geminiResponse.ok) {
-      console.error("Gemini request failed with status", geminiResponse.status);
+      const errorBody = await geminiResponse.text();
+      console.error(
+        "Gemini request failed:",
+        summarizeGeminiError(geminiResponse.status, errorBody, apiKey)
+      );
       sendJson(res, 502, { error: "The chatbot could not get a reply right now." });
       return;
     }
