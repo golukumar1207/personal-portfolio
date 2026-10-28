@@ -4,7 +4,7 @@
    1. Light / dark theme (saved in localStorage)
    2. Mobile navigation menu
    3. Instant project search
-   4. Portfolio chatbot (POST /api/chat)
+   4. Portfolio chatbot (POST /api/chat with resilient fallback)
    ========================================================= */
 
 (function () {
@@ -22,7 +22,6 @@
 
   /* ---------- Theme ---------- */
 
-  // Apply a theme and update the button label for screen readers.
   function setTheme(theme) {
     html.setAttribute("data-theme", theme);
     localStorage.setItem(THEME_KEY, theme);
@@ -38,7 +37,6 @@
       : "Light";
   }
 
-  // Restore the last saved theme, or keep dark as the default.
   const savedTheme = localStorage.getItem(THEME_KEY);
   if (savedTheme === "light" || savedTheme === "dark") {
     setTheme(savedTheme);
@@ -74,7 +72,6 @@
     }
   });
 
-  // Close the menu after a nav link is used (helpful on phones).
   primaryNav.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", closeMenu);
   });
@@ -106,7 +103,6 @@
     noResults.hidden = !showEmpty;
   }
 
-  // "input" runs as soon as the user types, so results update immediately.
   searchInput.addEventListener("input", filterProjects);
 
   /* ---------- Portfolio chatbot ---------- */
@@ -116,6 +112,7 @@
   const chatSend = document.getElementById("chat-send");
   const chatLog = document.getElementById("chat-log");
   const chatStatus = document.getElementById("chat-status");
+  const chatChips = document.querySelectorAll(".chat-chip");
   const CHAT_MAX_LENGTH = 500;
   let chatBusy = false;
 
@@ -151,14 +148,81 @@
     chatSend.disabled = chatBusy || !hasText;
   }
 
-  function friendlyChatError(data, response) {
-    if (data && typeof data.error === "string" && data.error.trim()) {
-      return data.error;
+  function getLocalPortfolioAnswer(question) {
+    const q = String(question || "").toLowerCase();
+
+    if (q.includes("hi") || q.includes("hello") || q.includes("hey") || q.includes("greetings")) {
+      return "Hello! I am Golu Kumar's portfolio assistant. Feel free to ask me about Golu's education at JECRC University, his CGPA, technical skills, or his 5 featured projects!";
     }
-    if (response && response.status === 404) {
-      return "The chatbot backend was not found. Open this site through Vercel so /api/chat can run.";
+
+    if (q.includes("cgpa") || q.includes("gpa") || q.includes("marks") || q.includes("score") || q.includes("grade")) {
+      return "Golu Kumar currently holds a strong CGPA of 8.0 in his B.Tech Computer Science and Engineering program at JECRC University, Jaipur.";
     }
-    return "Sorry, I could not get a reply. Please try again in a moment.";
+
+    if (
+      q.includes("education") ||
+      q.includes("college") ||
+      q.includes("university") ||
+      q.includes("study") ||
+      q.includes("studying") ||
+      q.includes("degree") ||
+      q.includes("jecrc") ||
+      q.includes("course") ||
+      q.includes("graduation")
+    ) {
+      return "Golu is currently a second-year B.Tech student in Computer Science and Engineering at JECRC University, Jaipur (expected graduation: 2029) with a CGPA of 8.0.";
+    }
+
+    if (
+      q.includes("skill") ||
+      q.includes("tech") ||
+      q.includes("stack") ||
+      q.includes("language") ||
+      q.includes("javascript") ||
+      q.includes("html") ||
+      q.includes("css") ||
+      q.includes("c++")
+    ) {
+      return "Golu's technical skillset includes HTML, CSS, JavaScript, C++, C, and Python, along with Git, GitHub, and modern web development workflows.";
+    }
+
+    if (q.includes("quiz")) {
+      return "The Interactive Quiz Application was created in Lecture 10 using HTML, CSS, and JavaScript to provide interactive browser-based quizzes. You can check the code here: https://github.com/golukumar1207/interactive-quiz";
+    }
+
+    if (q.includes("book") || q.includes("reading")) {
+      return "The Book Reading List Application was developed in Lecture 11 with HTML, CSS, and JavaScript for managing books and reading lists. View repository: https://github.com/golukumar1207/-book-reading-list";
+    }
+
+    if (q.includes("cursor") || q.includes("bug")) {
+      return "The Bug Fixing project demonstrates using Cursor AI to diagnose, debug, and fix software errors in Python code. View repository: https://github.com/golukumar1207/bug-fixing-using-cursor-ai";
+    }
+
+    if (q.includes("messy") || q.includes("refactor")) {
+      return "The Messy Python Code Improvement project explores refactoring and cleaning complex Python code using AI assistance. View repository: https://github.com/golukumar1207/messy-python-code-improvement";
+    }
+
+    if (q.includes("python programs") || q.includes("factorial") || q.includes("fibonacci")) {
+      return "The Python Programs Collection contains core Python programs including factorials, Fibonacci, and dictionary transformations. View repository: https://github.com/golukumar1207/-python-programs-collection";
+    }
+
+    if (q.includes("project") || q.includes("work") || q.includes("portfolio")) {
+      return "Golu has 5 featured projects: 1) Python Programs Collection, 2) Messy Python Code Improvement, 3) Bug Fixing Using Cursor AI, 4) Interactive Quiz Application, and 5) Book Reading List Application. You can view all code repositories in the Projects section above!";
+    }
+
+    if (q.includes("email") || q.includes("contact") || q.includes("reach") || q.includes("hire") || q.includes("message")) {
+      return "You can get in touch with Golu Kumar via email at golugulshan136@gmail.com, or connect through his GitHub profile at https://github.com/golukumar1207.";
+    }
+
+    if (q.includes("github") || q.includes("repo") || q.includes("git")) {
+      return "Golu's GitHub profile is https://github.com/golukumar1207 where you can view all his repositories and code contributions.";
+    }
+
+    if (q.includes("who is") || q.includes("about") || q.includes("who are you") || q.includes("introduce")) {
+      return "Golu Kumar is a second-year B.Tech CSE student at JECRC University, Jaipur (8.0 CGPA) with a keen interest in web development and software engineering.";
+    }
+
+    return "Golu Kumar is a second-year B.Tech Computer Science student at JECRC University, Jaipur (CGPA: 8.0) skilled in HTML, CSS, JavaScript, Python, C++, and C. Feel free to explore his projects above or contact him at golugulshan136@gmail.com.";
   }
 
   async function sendChatQuestion(question) {
@@ -179,17 +243,18 @@
         data = null;
       }
 
-      if (!response.ok || !data || typeof data.answer !== "string") {
-        appendChatMessage("error", friendlyChatError(data, response));
+      if (response.ok && data && typeof data.answer === "string" && data.answer.trim()) {
+        appendChatMessage("bot", data.answer);
         return;
       }
 
-      appendChatMessage("bot", data.answer);
+      // If backend fails or returned an error, fallback immediately
+      const fallback = getLocalPortfolioAnswer(question);
+      appendChatMessage("bot", fallback);
     } catch (err) {
-      appendChatMessage(
-        "error",
-        "I could not reach the chatbot. If you opened the HTML file directly, run the site with Vercel so /api/chat works."
-      );
+      // Offline / local file / network error: fallback gracefully
+      const fallback = getLocalPortfolioAnswer(question);
+      appendChatMessage("bot", fallback);
     } finally {
       setChatBusy(false);
       chatInput.focus();
@@ -220,6 +285,17 @@
       chatInput.value = "";
       updateChatSendState();
       sendChatQuestion(question);
+    });
+
+    // Quick suggestion chips
+    chatChips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        if (chatBusy) return;
+        const text = chip.textContent.trim();
+        if (text) {
+          sendChatQuestion(text);
+        }
+      });
     });
   }
 })();

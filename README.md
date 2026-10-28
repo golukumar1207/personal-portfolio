@@ -27,16 +27,15 @@ I am Golu Kumar, a second-year B.Tech Computer Science and Engineering student a
 - Project search and filtering
 - Light and dark theme toggle
 - Responsive website layout
+- Interactive chatbot with AI integration and fallback support
 
 ## Required Projects
 
-1. Python Programs Collection
-2. Messy Python Code Improvement
-3. Bug Fixing Using Cursor AI
-4. Interactive Quiz Application
-5. Book Reading List Application
-
-Project repository links will be added once the correct repositories are available.
+1. [Python Programs Collection](https://github.com/golukumar1207/-python-programs-collection) — Factorial, Fibonacci, and dictionary structure conversion.
+2. [Messy Python Code Improvement](https://github.com/golukumar1207/messy-python-code-improvement) — Refactoring messy Python code with AI assistance.
+3. [Bug Fixing Using Cursor AI](https://github.com/golukumar1207/bug-fixing-using-cursor-ai) — Diagnosing and fixing bugs using Cursor AI.
+4. [Interactive Quiz Application](https://github.com/golukumar1207/interactive-quiz) — Browser-based quiz app created in Lecture 10.
+5. [Book Reading List Application](https://github.com/golukumar1207/-book-reading-list) — Reading list and book tracking web app created in Lecture 11.
 
 ## Run Locally
 
