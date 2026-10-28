@@ -47,7 +47,7 @@ Project repository links will be added once the correct repositories are availab
 ## Links
 
 - **GitHub Profile:** https://github.com/golukumar1207
-- **Live Portfolio:** https://personal-portfolio-guwd2wc3t-golu20.vercel.app
+- **Live Portfolio:** https://personal-portfolio-rose-one-96.vercel.app
 
 ## Assessment
 
