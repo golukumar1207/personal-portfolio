@@ -27,14 +27,21 @@
     localStorage.setItem(THEME_KEY, theme);
 
     const isLight = theme === "light";
-    themeToggle.setAttribute("aria-pressed", String(isLight));
-    themeToggle.setAttribute(
-      "aria-label",
-      isLight ? "Switch to dark mode" : "Switch to light mode"
-    );
-    themeToggle.querySelector(".theme-toggle-text").textContent = isLight
-      ? "Dark"
-      : "Light";
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-pressed", String(isLight));
+      themeToggle.setAttribute(
+        "aria-label",
+        isLight ? "Switch to dark mode" : "Switch to light mode"
+      );
+      const label = themeToggle.querySelector(".theme-label, .theme-toggle-text");
+      if (label) {
+        label.textContent = isLight ? "Dark" : "Light";
+      }
+      const icon = themeToggle.querySelector(".theme-icon, .theme-toggle-icon");
+      if (icon) {
+        icon.textContent = isLight ? "🌙" : "☀";
+      }
+    }
   }
 
   const savedTheme = localStorage.getItem(THEME_KEY);
@@ -44,41 +51,56 @@
     setTheme("dark");
   }
 
-  themeToggle.addEventListener("click", function () {
-    const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
-    setTheme(next);
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      const next = html.getAttribute("data-theme") === "light" ? "dark" : "light";
+      setTheme(next);
+    });
+  }
 
   /* ---------- Mobile navigation ---------- */
 
   function closeMenu() {
-    primaryNav.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
-    navToggle.setAttribute("aria-label", "Open menu");
+    if (primaryNav) {
+      primaryNav.classList.remove("is-open");
+    }
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+    }
   }
 
   function openMenu() {
-    primaryNav.classList.add("is-open");
-    navToggle.setAttribute("aria-expanded", "true");
-    navToggle.setAttribute("aria-label", "Close menu");
+    if (primaryNav) {
+      primaryNav.classList.add("is-open");
+    }
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", "true");
+      navToggle.setAttribute("aria-label", "Close menu");
+    }
   }
 
-  navToggle.addEventListener("click", function () {
-    const isOpen = primaryNav.classList.contains("is-open");
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
+  if (navToggle) {
+    navToggle.addEventListener("click", function () {
+      const isOpen = primaryNav && primaryNav.classList.contains("is-open");
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+  }
 
-  primaryNav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeMenu);
-  });
+  if (primaryNav) {
+    primaryNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+  }
 
   /* ---------- Project search ---------- */
 
   function filterProjects() {
+    if (!searchInput) return;
     const query = searchInput.value.trim().toLowerCase();
     let visibleCount = 0;
 
@@ -99,11 +121,15 @@
       }
     });
 
-    const showEmpty = query !== "" && visibleCount === 0;
-    noResults.hidden = !showEmpty;
+    if (noResults) {
+      const showEmpty = query !== "" && visibleCount === 0;
+      noResults.hidden = !showEmpty;
+    }
   }
 
-  searchInput.addEventListener("input", filterProjects);
+  if (searchInput) {
+    searchInput.addEventListener("input", filterProjects);
+  }
 
   /* ---------- Portfolio chatbot ---------- */
 
@@ -117,6 +143,7 @@
   let chatBusy = false;
 
   function appendChatMessage(kind, text) {
+    if (!chatLog) return;
     const row = document.createElement("div");
     row.className = "chat-message chat-message-" + kind;
 
@@ -137,13 +164,14 @@
 
   function setChatBusy(isBusy) {
     chatBusy = isBusy;
-    chatInput.disabled = isBusy;
-    chatStatus.hidden = !isBusy;
-    chatLog.setAttribute("aria-busy", String(isBusy));
+    if (chatInput) chatInput.disabled = isBusy;
+    if (chatStatus) chatStatus.hidden = !isBusy;
+    if (chatLog) chatLog.setAttribute("aria-busy", String(isBusy));
     updateChatSendState();
   }
 
   function updateChatSendState() {
+    if (!chatInput || !chatSend) return;
     const hasText = chatInput.value.trim().length > 0;
     chatSend.disabled = chatBusy || !hasText;
   }
@@ -257,11 +285,11 @@
       appendChatMessage("bot", fallback);
     } finally {
       setChatBusy(false);
-      chatInput.focus();
+      if (chatInput) chatInput.focus();
     }
   }
 
-  if (chatForm && chatInput && chatSend && chatLog && chatStatus) {
+  if (chatForm && chatInput && chatSend && chatLog) {
     chatInput.addEventListener("input", updateChatSendState);
 
     chatForm.addEventListener("submit", function (event) {

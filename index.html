@@ -1,50 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Personal portfolio of Golu Kumar, a B.Tech Computer Science student at JECRC University, Jaipur."
+      content="Official portfolio of Golu Kumar, B.Tech Computer Science student at JECRC University, Jaipur. Explore projects, technical skills, and interactive AI chatbot."
     />
-    <title>Golu Kumar | Personal Portfolio</title>
-    <!-- Stylesheet for layout, colors, and responsive design -->
+    <title>Golu Kumar | Software Engineering & Web Developer Portfolio</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Skip link helps keyboard users jump past the header -->
+    <!-- Skip to main content for accessibility -->
     <a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Site header with logo, navigation, and theme toggle -->
+    <!-- Background Ambient Glow Effects -->
+    <div class="ambient-glow ambient-glow-top" aria-hidden="true"></div>
+    <div class="ambient-glow ambient-glow-bottom" aria-hidden="true"></div>
+
+    <!-- SITE HEADER -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="logo" href="#home">Golu Kumar</a>
+        <a class="logo" href="#home" aria-label="Golu Kumar Home">
+          <span class="logo-mark">GK</span>
+          <span class="logo-text">Golu<span class="logo-accent">.dev</span></span>
+        </a>
 
-        <!-- Hamburger button is shown on small screens -->
+        <!-- Mobile Navigation Toggle -->
         <button
           class="nav-toggle"
           type="button"
           aria-controls="primary-nav"
           aria-expanded="false"
-          aria-label="Open menu"
+          aria-label="Toggle navigation menu"
         >
           <span class="nav-toggle-bar" aria-hidden="true"></span>
           <span class="nav-toggle-bar" aria-hidden="true"></span>
           <span class="nav-toggle-bar" aria-hidden="true"></span>
         </button>
 
-        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary Navigation">
           <ul class="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#chat">Chat</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#chat" class="nav-link">AI Chat</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
           </ul>
         </nav>
 
-        <!-- Light/dark mode button. JavaScript saves the choice in localStorage. -->
+        <!-- Theme Toggle Button -->
         <button
           id="theme-toggle"
           class="theme-toggle"
@@ -52,240 +68,408 @@
           aria-pressed="false"
           aria-label="Switch to light mode"
         >
-          <span class="theme-toggle-icon" aria-hidden="true">☀</span>
-          <span class="theme-toggle-text">Light</span>
+          <span class="theme-icon" aria-hidden="true">☀</span>
+          <span class="theme-label">Light</span>
         </button>
       </div>
     </header>
 
     <main id="main">
-      <!-- HOME -->
-      <section id="home" class="section hero">
-        <div class="container hero-inner">
-          <p class="eyebrow">B.Tech CSE · JECRC University, Jaipur</p>
-          <h1>Hi, I am Golu Kumar</h1>
-          <p class="hero-lead">
-            I am a second-year Computer Science and Engineering student and an
-            aspiring web developer. I am learning how to build clear, usable
-            websites with HTML, CSS, and JavaScript.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View projects</a>
-            <a class="btn btn-secondary" href="#contact">Contact me</a>
+      <!-- HERO SECTION -->
+      <section id="home" class="hero-section">
+        <div class="container hero-grid">
+          <!-- Hero Left Content -->
+          <div class="hero-content">
+            <div class="status-badge">
+              <span class="status-pulse" aria-hidden="true"></span>
+              <span>B.Tech CSE · JECRC University, Jaipur</span>
+            </div>
+
+            <h1 class="hero-headline">
+              Hi, I am <span class="gradient-text">Golu Kumar</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Second-year Computer Science student & aspiring Web Developer.
+              Passionate about creating elegant, accessible web experiences,
+              algorithmic problem solving, and modern developer tooling.
+            </p>
+
+            <!-- Quick Metrics / Stats -->
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <span class="metric-value">8.0</span>
+                <span class="metric-label">Current CGPA</span>
+              </div>
+              <div class="metric-divider" aria-hidden="true"></div>
+              <div class="metric-item">
+                <span class="metric-value">2nd</span>
+                <span class="metric-label">Year B.Tech</span>
+              </div>
+              <div class="metric-divider" aria-hidden="true"></div>
+              <div class="metric-item">
+                <span class="metric-value">5+</span>
+                <span class="metric-label">Projects Built</span>
+              </div>
+            </div>
+
+            <!-- Hero Action Buttons -->
+            <div class="hero-cta-group">
+              <a class="btn btn-primary" href="#projects">
+                <span>Explore Projects</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a class="btn btn-secondary" href="#contact">
+                <span>Get in Touch</span>
+              </a>
+              <a
+                class="btn btn-ghost btn-icon-only"
+                href="https://github.com/golukumar1207"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Golu Kumar GitHub profile"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Right Profile Card -->
+          <div class="hero-visual">
+            <div class="profile-card">
+              <div class="profile-card-glow" aria-hidden="true"></div>
+              <div class="profile-avatar-frame">
+                <img
+                  id="profile-img"
+                  src="assets/profile.jpg"
+                  onerror="if(!this.dataset.fallback){this.dataset.fallback=1;this.src='assets/avatar.svg';}else{this.src='https://ui-avatars.com/api/?name=Golu+Kumar&background=0284c7&color=ffffff&size=512&bold=true';}"
+                  alt="Golu Kumar profile picture"
+                  class="profile-avatar"
+                />
+                <div class="avatar-status-badge" title="Open to opportunities">
+                  <span class="status-pulse-sm"></span>
+                  <span>Active</span>
+                </div>
+              </div>
+
+              <div class="profile-details">
+                <h2 class="profile-name">Golu Kumar</h2>
+                <p class="profile-role">Computer Science Engineering</p>
+                <p class="profile-college">JECRC University · Jaipur</p>
+
+                <!-- Floating Tech Pills -->
+                <div class="profile-tags">
+                  <span class="mini-pill">Python</span>
+                  <span class="mini-pill">HTML/CSS</span>
+                  <span class="mini-pill">JavaScript</span>
+                  <span class="mini-pill">C++</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ABOUT -->
+      <!-- ABOUT SECTION (BENTO GRID) -->
       <section id="about" class="section">
         <div class="container">
-          <h2>About Me</h2>
-          <p class="section-intro">
-            A short overview of my studies and what I am working toward.
-          </p>
-          <div class="about-grid">
-            <article class="card">
-              <h3>Education</h3>
-              <ul class="info-list">
+          <div class="section-heading-wrapper">
+            <span class="section-tag">Background & Journey</span>
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">
+              A glimpse into my academics, technical interests, and professional aspirations.
+            </p>
+          </div>
+
+          <div class="bento-grid">
+            <!-- Bento Card 1: Education -->
+            <article class="bento-card bento-card-featured">
+              <div class="bento-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <h3 class="bento-card-title">Academic Education</h3>
+              <ul class="education-specs">
                 <li>
-                  <strong>Course:</strong> B.Tech in Computer Science and
-                  Engineering
+                  <span class="spec-label">Degree</span>
+                  <span class="spec-value">B.Tech in Computer Science & Engineering</span>
                 </li>
                 <li>
-                  <strong>University:</strong> JECRC University, Jaipur
+                  <span class="spec-label">University</span>
+                  <span class="spec-value">JECRC University, Jaipur</span>
                 </li>
-                <li><strong>Year:</strong> Second year</li>
-                <li><strong>Expected graduation:</strong> 2029</li>
-                <li><strong>CGPA:</strong> 8.0</li>
+                <li>
+                  <span class="spec-label">Current Stage</span>
+                  <span class="spec-value">Second Year (Batch 2025–2029)</span>
+                </li>
+                <li>
+                  <span class="spec-label">Academic Grade</span>
+                  <span class="spec-value grade-highlight">8.0 CGPA</span>
+                </li>
               </ul>
             </article>
-            <article class="card">
-              <h3>Background</h3>
-              <p>
-                I am building this personal portfolio as a college assessment
-                project. My current focus is learning web development and
-                practicing programming with languages I have studied in class
-                and on my own.
+
+            <!-- Bento Card 2: Development Focus -->
+            <article class="bento-card">
+              <div class="bento-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3 class="bento-card-title">Technical Focus</h3>
+              <p class="bento-desc">
+                Focusing on responsive modern web design, scalable frontend architecture, and core computer science fundamentals. Practicing daily programming with Python, C++, and JavaScript.
               </p>
-              <p>
-                This site includes an API-based chatbot with a secure backend.
-                This page does not include any secret keys.
+              <div class="bento-highlight-pill">Front-End · Algorithms · Clean Code</div>
+            </article>
+
+            <!-- Bento Card 3: College Assessment -->
+            <article class="bento-card">
+              <div class="bento-icon-box" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.5 7.5"/><path d="M12 12v9"/></svg>
+              </div>
+              <h3 class="bento-card-title">Project Purpose</h3>
+              <p class="bento-desc">
+                Engineered for college assessment with a secure serverless chatbot backend, modular client architecture, zero secret leakage, and dynamic responsive styling.
               </p>
+              <div class="bento-highlight-pill">College Assessment · Vercel Deployment</div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- SKILLS -->
+      <!-- SKILLS SECTION -->
       <section id="skills" class="section section-alt">
         <div class="container">
-          <h2>Skills</h2>
-          <p class="section-intro">
-            Technologies I am learning or have studied. These are not claimed as
-            expert-level skills.
-          </p>
-          <ul class="skills-list">
-            <li class="skill-chip">HTML</li>
-            <li class="skill-chip">CSS</li>
-            <li class="skill-chip">JavaScript</li>
-            <li class="skill-chip">C++</li>
-            <li class="skill-chip">C</li>
-            <li class="skill-chip">Python</li>
-          </ul>
+          <div class="section-heading-wrapper">
+            <span class="section-tag">Core Competencies</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">
+              Languages, libraries, and engineering tools I study and practice regularly.
+            </p>
+          </div>
+
+          <div class="skills-categories-grid">
+            <!-- Languages -->
+            <div class="skill-category-card">
+              <h3 class="category-header">Programming Languages</h3>
+              <div class="chips-container">
+                <div class="skill-chip"><span class="chip-dot"></span>Python</div>
+                <div class="skill-chip"><span class="chip-dot"></span>JavaScript (ES6+)</div>
+                <div class="skill-chip"><span class="chip-dot"></span>C++</div>
+                <div class="skill-chip"><span class="chip-dot"></span>C</div>
+              </div>
+            </div>
+
+            <!-- Web & Styling -->
+            <div class="skill-category-card">
+              <h3 class="category-header">Web Development</h3>
+              <div class="chips-container">
+                <div class="skill-chip"><span class="chip-dot"></span>HTML5 Semantic</div>
+                <div class="skill-chip"><span class="chip-dot"></span>CSS3 Modern Flex/Grid</div>
+                <div class="skill-chip"><span class="chip-dot"></span>Responsive UI/UX</div>
+                <div class="skill-chip"><span class="chip-dot"></span>DOM API & Fetch</div>
+              </div>
+            </div>
+
+            <!-- Workflow & Tools -->
+            <div class="skill-category-card">
+              <h3 class="category-header">Tools & Platforms</h3>
+              <div class="chips-container">
+                <div class="skill-chip"><span class="chip-dot"></span>Git & GitHub</div>
+                <div class="skill-chip"><span class="chip-dot"></span>Vercel Cloud</div>
+                <div class="skill-chip"><span class="chip-dot"></span>Cursor AI & DevTools</div>
+                <div class="skill-chip"><span class="chip-dot"></span>RESTful APIs</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- PROJECTS -->
+      <!-- PROJECTS SECTION -->
       <section id="projects" class="section">
         <div class="container">
-          <h2>Projects</h2>
-          <p class="section-intro">
-            Course and practice work. Explore source code repositories and project implementations below.
-          </p>
-
-          <!-- Search filters cards as you type -->
-          <div class="search-bar">
-            <label for="project-search">Search projects</label>
-            <input
-              id="project-search"
-              type="search"
-              placeholder="Try Python, Quiz, or Book"
-              autocomplete="off"
-            />
+          <div class="section-heading-wrapper">
+            <span class="section-tag">Portfolio Showcase</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">
+              Coursework and practice implementations. Every project links directly to its source code repository.
+            </p>
           </div>
 
-          <!-- Message shown by JavaScript when nothing matches -->
-          <p id="no-results" class="no-results" hidden>
-            No projects match your search. Try another keyword.
+          <!-- Search Filter Bar -->
+          <div class="search-filter-wrapper">
+            <div class="search-box">
+              <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input
+                id="project-search"
+                type="search"
+                placeholder="Search projects by keyword (e.g., Python, Quiz, Book, AI)..."
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Empty search message -->
+          <p id="no-results" class="no-results-box" hidden>
+            No projects matched your search. Try another keyword like "Python", "Quiz", or "Book".
           </p>
 
-          <div id="project-grid" class="project-grid">
+          <!-- Projects Grid -->
+          <div id="project-grid" class="projects-grid">
+            <!-- Project 1 -->
             <article
               class="project-card"
               data-title="Python Programs Collection"
-              data-description="A small collection of Python programs covering factorial, Fibonacci, and converting a structure to a dictionary."
-              data-tech="Python"
+              data-description="A collection of Python scripts demonstrating foundational algorithms like factorial, Fibonacci sequence, and data structure conversion."
+              data-tech="Python Algorithms Math"
             >
-              <p class="project-tag">Python</p>
-              <h3>Python Programs Collection</h3>
-              <p>
-                A small collection of Python programs covering factorial,
-                Fibonacci, and converting a structure to a dictionary.
+              <div class="card-top-meta">
+                <span class="project-tag">Python · Algorithms</span>
+              </div>
+              <h3 class="project-title">Python Programs Collection</h3>
+              <p class="project-desc">
+                A collection of core Python programs implementing algorithmic solutions including iterative/recursive factorials, Fibonacci sequences, and converting structures into dictionaries.
               </p>
-              <p class="project-meta">Technologies: Python</p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Data Structures</span>
+                <span class="tech-tag">CLI</span>
+              </div>
               <div class="project-actions">
                 <a
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-primary btn-sm"
                   href="https://github.com/golukumar1207/-python-programs-collection"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  View Code
+                  <span>View Repository</span>
                 </a>
               </div>
             </article>
 
+            <!-- Project 2 -->
             <article
               class="project-card"
               data-title="Messy Python Code Improvement"
               data-description="Improving messy Python code using AI assistance to make the program easier to read and maintain."
-              data-tech="Python AI"
+              data-tech="Python Refactoring AI Clean Code"
             >
-              <p class="project-tag">Python · AI assistance</p>
-              <h3>Messy Python Code Improvement</h3>
-              <p>
-                Improving messy Python code using AI assistance to make the
-                program easier to read and maintain.
+              <div class="card-top-meta">
+                <span class="project-tag">Python · AI Refactoring</span>
+              </div>
+              <h3 class="project-title">Messy Python Code Improvement</h3>
+              <p class="project-desc">
+                Refactoring unorganized billing software with code smells (magic numbers, poor variables, global state) into clean, object-oriented code with dataclasses and constants.
               </p>
-              <p class="project-meta">Technologies: Python</p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">AI Workflows</span>
+                <span class="tech-tag">OOP</span>
+              </div>
               <div class="project-actions">
                 <a
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-primary btn-sm"
                   href="https://github.com/golukumar1207/messy-python-code-improvement"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  View Code
+                  <span>View Repository</span>
                 </a>
               </div>
             </article>
 
+            <!-- Project 3 -->
             <article
               class="project-card"
               data-title="Bug Fixing Using Cursor AI"
               data-description="Debugging and correcting an incorrect program with help from Cursor AI."
-              data-tech="Python debugging Cursor AI"
+              data-tech="Python Debugging Cursor AI Testing"
             >
-              <p class="project-tag">Debugging · Cursor AI</p>
-              <h3>Bug Fixing Using Cursor AI</h3>
-              <p>
-                Debugging and correcting an incorrect program with help from
-                Cursor AI.
+              <div class="card-top-meta">
+                <span class="project-tag">Testing · Cursor AI</span>
+              </div>
+              <h3 class="project-title">Bug Fixing Using Cursor AI</h3>
+              <p class="project-desc">
+                Diagnosing and fixing subtle logic errors, mutable default arguments, division by zero edge cases, and boundary gaps in student grading algorithms with unit test verification.
               </p>
-              <p class="project-meta">Technologies: Python, debugging</p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Cursor AI</span>
+                <span class="tech-tag">Unittest</span>
+              </div>
               <div class="project-actions">
                 <a
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-primary btn-sm"
                   href="https://github.com/golukumar1207/bug-fixing-using-cursor-ai"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  View Code
+                  <span>View Repository</span>
                 </a>
               </div>
             </article>
 
+            <!-- Project 4 -->
             <article
               class="project-card"
               data-title="Interactive Quiz Application"
               data-description="An interactive quiz application developed in Lecture 10."
               data-tech="HTML CSS JavaScript Quiz"
             >
-              <p class="project-tag">Web · Lecture 10</p>
-              <h3>Interactive Quiz Application</h3>
-              <p>
-                An interactive quiz application developed in Lecture 10 to
-                practice questions and answers in the browser.
+              <div class="card-top-meta">
+                <span class="project-tag">Web App · Lecture 10</span>
+              </div>
+              <h3 class="project-title">Interactive Quiz Application</h3>
+              <p class="project-desc">
+                An interactive browser-based quiz application developed in Lecture 10 featuring live progress bar tracking, instant scoring feedback, dynamic option rendering, and result analysis.
               </p>
-              <p class="project-meta">Technologies: HTML, CSS, JavaScript</p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
               <div class="project-actions">
                 <a
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-primary btn-sm"
                   href="https://github.com/golukumar1207/interactive-quiz"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  View Code
+                  <span>View Repository</span>
                 </a>
               </div>
             </article>
 
+            <!-- Project 5 -->
             <article
               class="project-card"
               data-title="Book Reading List Application"
               data-description="A book reading list application developed in Lecture 11."
-              data-tech="HTML CSS JavaScript Book"
+              data-tech="HTML CSS JavaScript Book LocalStorage"
             >
-              <p class="project-tag">Web · Lecture 11</p>
-              <h3>Book Reading List Application</h3>
-              <p>
-                A book reading list application developed in Lecture 11 for
-                tracking titles I want to read or have already read.
+              <div class="card-top-meta">
+                <span class="project-tag">Web App · Lecture 11</span>
+              </div>
+              <h3 class="project-title">Book Reading List Application</h3>
+              <p class="project-desc">
+                A single-page reading tracker web application built in Lecture 11 with state management, categorical filtering (Reading, Completed, Want to Read), and browser localStorage persistence.
               </p>
-              <p class="project-meta">Technologies: HTML, CSS, JavaScript</p>
+              <div class="project-tech-tags">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">LocalStorage</span>
+                <span class="tech-tag">CSS Grid</span>
+              </div>
               <div class="project-actions">
                 <a
-                  class="btn btn-secondary btn-sm"
+                  class="btn btn-primary btn-sm"
                   href="https://github.com/golukumar1207/-book-reading-list"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                  View Code
+                  <span>View Repository</span>
                 </a>
               </div>
             </article>
@@ -293,105 +477,141 @@
         </div>
       </section>
 
-      <!-- CHATBOT — talks to /api/chat on the server -->
+      <!-- AI CHATBOT SECTION -->
       <section id="chat" class="section section-alt">
         <div class="container">
-          <h2>Ask the Portfolio Chatbot</h2>
-          <p class="section-intro">
-            Ask about my studies, skills, or projects. Answers come from the
-            secure backend, not from a key in this page.
-          </p>
+          <div class="section-heading-wrapper">
+            <span class="section-tag">Interactive AI Assistant</span>
+            <h2 class="section-title">Ask the Portfolio Chatbot</h2>
+            <p class="section-subtitle">
+              Have questions about Golu's education, skills, or projects? Ask the assistant below.
+            </p>
+          </div>
 
-          <div class="chat-panel">
-            <div
-              id="chat-log"
-              class="chat-log"
-              role="log"
-              aria-live="polite"
-              aria-relevant="additions"
-            >
-              <div class="chat-message chat-message-bot">
-                <span class="chat-role">Assistant</span>
-                <p class="chat-bubble">
-                  Hi, I am Golu Kumar’s portfolio assistant. Ask me about
-                  education, skills, or the five projects on this site.
-                </p>
+          <div class="chat-wrapper">
+            <div class="chat-card">
+              <!-- Chatbot Header -->
+              <div class="chat-header">
+                <div class="chat-avatar-wrapper">
+                  <div class="chat-avatar-icon">AI</div>
+                  <span class="online-indicator"></span>
+                </div>
+                <div>
+                  <h3 class="chat-title">Golu's Portfolio Copilot</h3>
+                  <p class="chat-desc">Knowledge Grounded · Always Available</p>
+                </div>
               </div>
-            </div>
 
-            <!-- Quick question suggestions -->
-            <div class="chat-suggestions" aria-label="Suggested questions">
-              <button type="button" class="chat-chip">What is your CGPA?</button>
-              <button type="button" class="chat-chip">What are your skills?</button>
-              <button type="button" class="chat-chip">Tell me about your projects</button>
-              <button type="button" class="chat-chip">How can I contact you?</button>
-            </div>
-
-            <p id="chat-status" class="chat-status" hidden>Thinking…</p>
-
-            <form id="chat-form" class="chat-form">
-              <label for="chat-input">Your question</label>
-              <div class="chat-compose">
-                <input
-                  id="chat-input"
-                  type="text"
-                  maxlength="500"
-                  autocomplete="off"
-                  placeholder="Example: What is Golu studying?"
-                />
-                <button
-                  id="chat-send"
-                  class="btn btn-primary"
-                  type="submit"
-                  disabled
-                >
-                  Send
-                </button>
+              <!-- Message History Log -->
+              <div
+                id="chat-log"
+                class="chat-log"
+                role="log"
+                aria-live="polite"
+                aria-relevant="additions"
+              >
+                <div class="chat-message chat-message-bot">
+                  <span class="chat-role">Assistant</span>
+                  <p class="chat-bubble">
+                    Hello! I am Golu Kumar's portfolio assistant. You can ask me about his studies at JECRC University, his 8.0 CGPA, technical skills, or any of his 5 projects!
+                  </p>
+                </div>
               </div>
-            </form>
+
+              <!-- Quick Suggested Questions -->
+              <div class="chat-suggestions-wrapper">
+                <span class="suggestions-label">Try asking:</span>
+                <div class="chat-suggestions" aria-label="Quick questions">
+                  <button type="button" class="chat-chip">What is Golu's CGPA?</button>
+                  <button type="button" class="chat-chip">What are Golu's skills?</button>
+                  <button type="button" class="chat-chip">Tell me about his projects</button>
+                  <button type="button" class="chat-chip">How can I contact Golu?</button>
+                </div>
+              </div>
+
+              <!-- Thinking Indicator -->
+              <div id="chat-status" class="chat-status" hidden>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span>Copilot is thinking…</span>
+              </div>
+
+              <!-- Chat Input Form -->
+              <form id="chat-form" class="chat-form">
+                <div class="chat-input-row">
+                  <input
+                    id="chat-input"
+                    type="text"
+                    maxlength="500"
+                    autocomplete="off"
+                    placeholder="Type your question here (e.g., What is Golu studying?)..."
+                  />
+                  <button
+                    id="chat-send"
+                    class="btn btn-primary btn-chat-send"
+                    type="submit"
+                    disabled
+                  >
+                    <span>Send</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT -->
+      <!-- CONTACT SECTION -->
       <section id="contact" class="section">
         <div class="container">
-          <h2>Contact</h2>
-          <p class="section-intro">
-            The best way to reach me is email. You can also view my GitHub
-            profile.
-          </p>
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="mailto:golugulshan136@gmail.com">
-              Email me
-            </a>
-            <a
-              class="btn btn-secondary"
-              href="https://github.com/golukumar1207"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit My GitHub Profile
-            </a>
+          <div class="contact-card">
+            <div class="contact-glow" aria-hidden="true"></div>
+            <span class="section-tag">Let's Connect</span>
+            <h2 class="contact-heading">Get in Touch with Golu</h2>
+            <p class="contact-lead">
+              Have an opportunity, question, or want to collaborate? I am always happy to connect!
+            </p>
+
+            <div class="contact-buttons-row">
+              <a class="btn btn-primary" href="mailto:golugulshan136@gmail.com">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>Email: golugulshan136@gmail.com</span>
+              </a>
+
+              <a
+                class="btn btn-secondary"
+                href="https://github.com/golukumar1207"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GitHub: @golukumar1207</span>
+              </a>
+            </div>
           </div>
-          <p class="contact-email">
-            Email:
-            <a href="mailto:golugulshan136@gmail.com">golugulshan136@gmail.com</a>
-          </p>
-          <p class="placeholder-note">
-            Explore my coding projects and repositories on GitHub.
-          </p>
         </div>
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
-      <div class="container">
-        <p>© 2026 Golu Kumar. Personal portfolio for college assessment.</p>
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p class="footer-copy">© 2026 Golu Kumar · Personal Portfolio</p>
+          <p class="footer-sub">B.Tech Computer Science & Engineering · JECRC University, Jaipur</p>
+        </div>
+        <div class="footer-right">
+          <a href="#home" class="back-to-top-btn" aria-label="Back to top">
+            <span>Back to top</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </a>
+        </div>
       </div>
     </footer>
 
-    <!-- JavaScript for theme, mobile menu, project search, and chatbot -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>
